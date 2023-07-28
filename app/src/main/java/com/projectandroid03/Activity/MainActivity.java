@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import android.widget.SearchView;
 
 //import com.projectandroid03.Controller.CategoryHandler;
 //import com.projectandroid03.Model.Category;
