@@ -1,0 +1,117 @@
+package com.projectandroid03.Activity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.projectandroid03.R;
+
+public class ProfileActivity extends AppCompatActivity {
+    ActionBar actionBar;
+    private EditText edtname, edtphone, edtpass;
+    private Button btnLuu, btnDangxuat;
+
+    SQLiteDatabase db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+        actionBar = getSupportActionBar();
+
+        actionBar.setTitle("Chỉnh sửa thông tin cá nhân");
+
+        addControl();
+        addEvent();
+        Intent intent = getIntent();
+        if (intent.hasExtra("user_phone")) {
+            String userPhone = intent.getStringExtra("user_phone");
+            String userPass = intent.getStringExtra("user_password");
+//            String userName = getUserNameFromDatabase(userPhone);
+            edtphone.setText(userPhone);
+            edtpass.setText(userPass);
+//            edtname.setText(userName);
+
+            // Tùy chọn: Sử dụng số điện thoại để truy vấn cơ sở dữ liệu và lấy thông tin chi tiết của người dùng
+            // Ví dụ giả định: Hiển thị tên người dùng trong EditText edtname
+
+        }
+        addEvent();
+    }
+
+
+//    private String getUserNameFromDatabase(String userPhone) {
+//        String userNameFromDatabase = null;
+//        UserHandler userHandler = new UserHandler(this);
+//        SQLiteDatabase db = userHandler.getReadableDatabase();
+//        String[] projection = {"user_name"};
+//        String selection = "user_phone = ?";
+//        String[] selectionArgs = {userPhone};
+//        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
+//        if (cursor != null && cursor.moveToFirst()) {
+//            userNameFromDatabase = cursor.getString(cursor.getColumnIndex("user_name"));
+//            cursor.close();
+//        }
+//        return userNameFromDatabase;
+//    }
+    private void addEvent(){
+        btnDangxuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newPhone = edtphone.getText().toString().trim();
+                String newPassword = edtpass.getText().toString().trim();
+                if(!newPhone.isEmpty() && !newPassword.isEmpty()){
+                    updateUserInfo(newPhone, newPassword);
+                    showToast("Lưu thông tin thành công!");
+                } else{
+                    showToast("Vui lòng điền đầy đủ thông tin!");
+                }
+            }
+        });
+    }
+
+    private void updateUserInfo(String newPhone, String newPassword) {
+        UserHandler userHandler = new UserHandler(this);
+        SQLiteDatabase db = userHandler.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("user_phone", newPhone);
+        values.put("user_password", newPassword);
+        String selection = "user_phone = ?";
+        String[] selectionArgs = {newPhone};
+
+        int rowsUpdated = db.update("tbl_user", values, selection, selectionArgs);
+
+        db.close();
+    }
+
+    private void showToast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+    private void addControl(){
+        edtphone = (EditText) findViewById(R.id.edtphone);
+//        edtname = (EditText) findViewById(R.id.edtname);
+        edtpass = (EditText) findViewById(R.id.edtpass);
+        btnLuu = (Button) findViewById(R.id.btnLuu);
+        btnDangxuat = (Button) findViewById(R.id.btnDangxuat);
+
+    }
+}
