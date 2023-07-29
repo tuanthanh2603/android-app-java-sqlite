@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Xóa thiết kế action_bar mặc định của framelayout
+        getSupportActionBar().hide();
+
         actionBar = getSupportActionBar();
 
         frameLayout = findViewById(R.id.frameFragment);
@@ -45,21 +49,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.item_home) {
-
-
-                    actionBar.setTitle("Trang chủ");
                     loadFragment(new FragmentHome());
                     return true;
                 } else if (id == R.id.item_category) {
-                    actionBar.setTitle("Danh mục");
                     loadFragment(new FragmentCategory());
                     return true;
                 } else if (id == R.id.item_order) {
-                    actionBar.setTitle("Đơn hàng");
                     loadFragment(new FragmentOrder());
                     return true;
                 } else if (id == R.id.item_account) {
-                    actionBar.setTitle("Cá nhân");
                     loadFragment(new FragmentAccount());
                     return true;
                 }
@@ -67,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // Mặc định hiển thị FragmentHome
-        actionBar.setTitle("Trang chủ");
         loadFragment(new FragmentHome());
 
 
