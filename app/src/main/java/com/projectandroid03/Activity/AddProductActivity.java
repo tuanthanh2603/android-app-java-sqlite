@@ -1,18 +1,11 @@
 package com.projectandroid03.Activity;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,10 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projectandroid03.Activity.Handler.CategoryHandler;
+import com.projectandroid03.Activity.Handler.ProductHandler;
 import com.projectandroid03.Activity.Model.Category;
 import com.projectandroid03.R;
 
-import java.io.File;
 import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {

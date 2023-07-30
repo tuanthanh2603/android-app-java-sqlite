@@ -1,19 +1,13 @@
 package com.projectandroid03.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import com.projectandroid03.Activity.Adapter.ProductAdapter;
+import com.projectandroid03.Activity.Handler.ProductHandler;
 import com.projectandroid03.Activity.Model.Product;
 
 import com.projectandroid03.R;

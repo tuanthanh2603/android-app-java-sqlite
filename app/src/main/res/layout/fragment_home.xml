@@ -8,48 +8,79 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#3070B7"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"
-            android:hint="Giảm 30% khi mua 2 sản phẩm"
-            android:paddingStart="20dp"
-            android:drawableStart="@drawable/ic_search"
-            android:background="@drawable/search_view_background" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#3070B7"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/notify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/notify"
-            android:layout_toRightOf="@id/searchEditText"
-            android:layout_centerVertical="true"
-            android:padding="4dp"
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/search_view_background"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Giảm 30% khi mua 2 sản phẩm"
+                android:padding="8dp"
+                android:paddingStart="20dp" />
 
-            android:layout_marginStart="8dp" />
+            <ImageView
+                android:id="@+id/notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toRightOf="@id/searchEditText"
+                android:padding="4dp"
+                android:src="@drawable/notify" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cart"
-            android:layout_toRightOf="@id/notify"
-            android:layout_centerVertical="true"
-            android:padding="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"/>
-        <!-- Nếu bạn muốn thêm hành động tìm kiếm tự động, bạn có thể sử dụng sự kiện textChange của EditText
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toRightOf="@id/notify"
+                android:padding="4dp"
+                android:src="@drawable/cart" />
+
+            <!-- Nếu bạn muốn thêm hành động tìm kiếm tự động, bạn có thể sử dụng sự kiện textChange của EditText
         và thực hiện tìm kiếm dựa trên nội dung nhập vào. Không cần sử dụng button. -->
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/banner1" />
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/bannerViewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </LinearLayout>
 
 
 </FrameLayout>
