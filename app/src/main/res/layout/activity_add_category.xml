@@ -20,6 +20,32 @@
 
             android:scaleType="centerCrop"
             android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/tv"/>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="20dp">-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonCamera"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/baseline_camera_alt_24" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonFolder"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/baseline_drive_folder_upload_24" />-->
+<!--        </LinearLayout>-->
 
         <Button
             android:id="@+id/btnChooseImage"
@@ -35,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_marginTop="20dp"
             android:hint="Nhập tên danh mục sản phẩm"
             android:layout_marginBottom="16dp" />
 

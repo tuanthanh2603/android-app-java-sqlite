@@ -15,24 +15,38 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projectandroid03.R;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddCategoryActivity extends AppCompatActivity {
     ActionBar actionBar;
     Button btnChooseImage, btnAddCategory;
+    ImageButton btnCaremera, btnFolder;
     EditText edtCategoryName;
+    TextView tv;
     ImageView imgCategory;
+
+
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
+
     private ActivityResultLauncher<String> pickImageLauncher;
+    private ActivityResultLauncher<Uri> captureImageLauncher;
     private Uri selectedImageUri;
     private SQLiteDatabase db;
     CategoryHandler categoryHandler;
@@ -46,11 +60,19 @@ public class AddCategoryActivity extends AppCompatActivity {
         actionBar.setTitle("Thêm danh mục sản phẩm");
         categoryHandler = new CategoryHandler(this);
         db = categoryHandler.getWritableDatabase();
-        categoryHandler.insertSampleData(db);
+//        categoryHandler.insertSampleData(db);
         addControl();
         addEvent();
+
     }
     private void addEvent(){
+//        btnCaremera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dispatchTakePictureIntent();
+//            }
+//        });
+
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +86,10 @@ public class AddCategoryActivity extends AppCompatActivity {
                     // Hiển thị ảnh đã chọn vào ImageView
                     selectedImageUri = result;
                     imgCategory.setImageURI(result);
+                    String uriString = selectedImageUri.toString();
+                    tv.setText(uriString);
+
+
                 }
             }
         });
@@ -71,52 +97,79 @@ public class AddCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String categoryName = edtCategoryName.getText().toString().trim();
-                if (!TextUtils.isEmpty(categoryName)) {
-                    // Kiểm tra xem người dùng đã chọn ảnh hay chưa
-                    if (selectedImageUri != null) {
-                        // Thực hiện thêm danh mục vào cơ sở dữ liệu SQLite
-                        boolean isAdded = addCategoryToDatabase(categoryName, selectedImageUri);
+                if(!TextUtils.isEmpty(categoryName)){
+                    if(selectedImageUri != null){
+                        boolean isAdded = addCategoryToDataBase(categoryName, selectedImageUri);
 
-                        // Xóa nội dung của EditText sau khi thêm thành công
-                        edtCategoryName.setText("");
-
-                        // Xử lý thông báo hoặc các hành động khác dựa vào kết quả thêm danh mục
-                        if (isAdded) {
-                            showToast("Thêm danh mục thành công!");
+                        if(isAdded){
+                            showToast("Thêm danh mục thành công");
+                            edtCategoryName.setText("");
                         } else {
-                            showToast("Thêm danh mục thất bại!");
+                            showToast("Thêm danh mục thất bại");
                         }
-                    } else {
+                    }else {
                         showToast("Vui lòng chọn ảnh cho danh mục!");
                     }
-                } else {
+
+                }else {
                     showToast("Vui lòng nhập tên danh mục!");
                 }
             }
         });
+//         captureImageLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), new ActivityResultCallback<Boolean>() {
+//            @Override
+//            public void onActivityResult(Boolean isImageCaptured) {
+//                if (isImageCaptured) {
+//                    imgCategory.setImageURI(selectedImageUri);
+//                } else {
+//                    showToast("Không thể chụp ảnh!");
+//                }
+//            }
+//        });
 
+
+//
     }
-
-    private boolean addCategoryToDatabase(String categoryName, @NonNull Uri imageUri) {
+    private boolean addCategoryToDataBase(String categoryName, Uri imageUri){
         String imagePath = imageUri.toString();
-        boolean isCategoryAdded = false; // Biến cờ để lưu trạng thái thêm danh mục
-
+        boolean isCategoryAdded = false;
         ContentValues values = new ContentValues();
         values.put("category_name", categoryName);
         values.put("category_image", imagePath);
         long newRowId = db.insert("tbl_category", null, values);
-
-        if (newRowId != -1) {
-
+        if(newRowId != -1){
             isCategoryAdded = true;
-        } else {
+        }else {
             // Thêm danh mục thất bại
-
             isCategoryAdded = false;
         }
-
         return isCategoryAdded;
     }
+
+
+
+//    private boolean addCategoryToDatabase(String categoryName, Uri imageUri) {
+//        String imagePath = imageUri.toString();
+//        boolean isCategoryAdded = false; // Biến cờ để lưu trạng thái thêm danh mục
+//
+//        ContentValues values = new ContentValues();
+//        values.put("category_name", categoryName);
+//        values.put("category_image", imagePath);
+//        long newRowId = db.insert("tbl_category", null, values);
+//
+//        if (newRowId != -1) {
+//            // Thêm danh mục thành công
+//            isCategoryAdded = true;
+//        } else {
+//            // Thêm danh mục thất bại
+//            isCategoryAdded = false;
+//        }
+//
+//        return isCategoryAdded;
+//    }
+
+
+
 
 
 
@@ -133,12 +186,26 @@ public class AddCategoryActivity extends AppCompatActivity {
                 if (options[item].equals("Chọn từ thư viện")) {
                     pickImageLauncher.launch("image/*");
                 } else if (options[item].equals("Chụp ảnh")) {
-//                    captureImageLauncher.launch(MediaStore.ACTION_IMAGE_CAPTURE);
+//                    captureImageLauncher.launch(createImageUri());
                 }
             }
         });
         builder.show();
     }
+//    private Uri createImageUri() {
+//        // Tạo tên file ảnh dựa vào thời gian hiện tại
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+//        String imageFileName = "IMG_" + timeStamp + ".jpg";
+//
+//        // Lưu ảnh vào thư mục ảnh của ứng dụng (hoặc có thể lưu vào thư mục khác tùy ý)
+//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File imageFile = new File(storageDir, imageFileName);
+//
+//        // Lưu Uri của ảnh đã chụp vào biến selectedImageUri
+//        selectedImageUri = Uri.fromFile(imageFile);
+//
+//        return selectedImageUri;
+//    }
 
     private void showToast(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
@@ -149,6 +216,9 @@ public class AddCategoryActivity extends AppCompatActivity {
         btnChooseImage = (Button) findViewById(R.id.btnChooseImage);
         edtCategoryName = (EditText) findViewById(R.id.edtCategoryName);
         imgCategory = (ImageView) findViewById(R.id.imgCategory);
+//        btnCaremera = (ImageButton) findViewById(R.id.imageButtonCamera);
+//        btnFolder = (ImageButton) findViewById(R.id.imageButtonFolder);
+        tv =(TextView) findViewById(R.id.tv);
     }
 
 }

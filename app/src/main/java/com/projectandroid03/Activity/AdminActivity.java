@@ -12,7 +12,7 @@ import com.projectandroid03.R;
 
 public class AdminActivity extends AppCompatActivity {
     ActionBar actionBar;
-    Button btnaddcate;
+    Button btnaddcate, btnlistcate, btnaddproduct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +29,29 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminActivity.this, AddCategoryActivity.class);
 
-                // Gửi thông tin hoặc dữ liệu cần thiết nếu cần thiết, ví dụ như dữ liệu của danh mục sản phẩm
-
                 // Bắt đầu mở Activity mới
+                startActivity(intent);
+            }
+        });
+        btnlistcate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, ListCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnaddproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, AddProductActivity.class);
                 startActivity(intent);
             }
         });
     }
     private void addControl(){
+
         btnaddcate = (Button) findViewById(R.id.button);
+        btnlistcate = (Button) findViewById(R.id.button3);
+        btnaddproduct = (Button) findViewById(R.id.button2);
     }
 }
