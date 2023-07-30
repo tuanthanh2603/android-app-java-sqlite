@@ -34,6 +34,7 @@
             android:layout_toRightOf="@id/searchEditText"
             android:layout_centerVertical="true"
             android:padding="4dp"
+
             android:layout_marginStart="8dp" />
 
         <ImageView
