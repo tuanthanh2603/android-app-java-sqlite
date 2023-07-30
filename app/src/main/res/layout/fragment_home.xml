@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.FragmentHome">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="70dp"
+        android:background="#3070B7"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginStart="15dp"
+            android:layout_centerVertical="true"
+            android:hint="Giảm 30% khi mua 2 sản phẩm"
+            android:paddingStart="20dp"
+            android:drawableStart="@drawable/ic_search"
+            android:background="@drawable/search_view_background" />
+
+        <ImageView
+            android:id="@+id/notify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notify"
+            android:layout_toRightOf="@id/searchEditText"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:layout_marginStart="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cart"
+            android:layout_toRightOf="@id/notify"
+            android:layout_centerVertical="true"
+            android:padding="8dp"/>
+        <!-- Nếu bạn muốn thêm hành động tìm kiếm tự động, bạn có thể sử dụng sự kiện textChange của EditText
+        và thực hiện tìm kiếm dựa trên nội dung nhập vào. Không cần sử dụng button. -->
+
+    </RelativeLayout>
+
 
 </FrameLayout>

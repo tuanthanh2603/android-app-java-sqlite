@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Đặt khoảng cách giữa biểu tượng và văn bản (padding) ở đây -->
+    <item
+        android:right="8dp"
+        android:drawable="@drawable/search" />
+</layer-list>
