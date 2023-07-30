@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.projectandroid03.Activity.Model.Category;
 import com.projectandroid03.R;
 
+import java.io.File;
 import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class AddProductActivity extends AppCompatActivity {
     private Uri selectedImageUri;
     private SQLiteDatabase db;
     ProductHandler productHandler;
+    CategoryHandler categoryHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +68,11 @@ public class AddProductActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
+        // Kiểm tra xem cơ sở dữ liệu đã tồn tại chưa
 
     }
+
+
     private void addEvent(){
 
 

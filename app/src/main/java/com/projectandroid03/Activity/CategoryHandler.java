@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CategoryHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "android04.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
     public CategoryHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -88,6 +88,7 @@ public class CategoryHandler extends SQLiteOpenHelper {
     }
 
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -99,4 +100,31 @@ public class CategoryHandler extends SQLiteOpenHelper {
         int rowsAffected = db.delete("tbl_category", "category_id = ?", new String[] { String.valueOf(categoryId) });
         return rowsAffected > 0;
     }
+    public String getCategoryNameByCategoryId(int categoryId) {
+        String categoryName = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            String[] projection = {"category_name"};
+            String selection = "category_id = ?";
+            String[] selectionArgs = {String.valueOf(categoryId)};
+
+            cursor = db.query("tbl_category", projection, selection, selectionArgs, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                int categoryNameIndex = cursor.getColumnIndex("category_name");
+                categoryName = cursor.getString(categoryNameIndex);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return categoryName;
+    }
+
 }

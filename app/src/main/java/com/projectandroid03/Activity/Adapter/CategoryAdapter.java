@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.daimajia.swipe.SwipeLayout;
 import com.projectandroid03.Activity.Model.Category;
 import com.projectandroid03.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         Category category = getItem(position);
 //        imgCategory.setImageURI(category.getImageUri());
         tvCategoryName.setText(category.getCategoryName());
+//        Picasso.get().load(category.getImageUri()).into(imgCategory);
 
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

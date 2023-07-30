@@ -12,7 +12,7 @@ import com.projectandroid03.R;
 
 public class AdminActivity extends AppCompatActivity {
     ActionBar actionBar;
-    Button btnaddcate, btnlistcate, btnaddproduct;
+    Button btnaddcate, btnlistcate, btnaddproduct, btnlistproduct, btnlistuser, btndangxuat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +47,36 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnlistproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, ListProductActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnlistuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, ListUserActivity.class);
+                startActivity(intent);
+            }
+        });
+        btndangxuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     private void addControl(){
 
         btnaddcate = (Button) findViewById(R.id.button);
         btnlistcate = (Button) findViewById(R.id.button3);
         btnaddproduct = (Button) findViewById(R.id.button2);
+        btnlistproduct = (Button) findViewById(R.id.button4);
+        btnlistuser = (Button) findViewById(R.id.button5);
+        btndangxuat = (Button) findViewById(R.id.button6);
     }
 }

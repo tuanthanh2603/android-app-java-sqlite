@@ -1,8 +1,16 @@
 package com.projectandroid03.Activity;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+
+import com.projectandroid03.Activity.Model.Category;
+import com.projectandroid03.Activity.Model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "android03.db";
@@ -31,5 +39,35 @@ public class UserHandler extends SQLiteOpenHelper {
             String addColumnQuery = "ALTER TABLE tbl_users ADD COLUMN user_name TEXT DEFAULT 'Khách hàng'";
             db.execSQL(addColumnQuery);
         }
+    }
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            cursor = db.query("tbl_user", null, null, null, null, null, null);
+            int userIdIndex = cursor.getColumnIndex("user_id");
+            int userPhoneIndex = cursor.getColumnIndex("user_phone");
+
+
+            while (cursor.moveToNext()) {
+                int userId = cursor.getInt(userIdIndex);
+                String userPhone = cursor.getString(userPhoneIndex);
+
+
+                User user = new User(userId, userPhone);
+                userList.add(user);
+            }
+        } catch (Exception e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return userList;
     }
 }
