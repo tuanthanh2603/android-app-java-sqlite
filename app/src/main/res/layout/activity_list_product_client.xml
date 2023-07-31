@@ -51,8 +51,12 @@
         </RelativeLayout>
 
         <GridView
+            android:id="@+id/girdViewProductClient"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_margin="10dp"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"/>
 
         <!--        <ListView-->
 <!--            android:id="@+id/listViewProductClient"-->
