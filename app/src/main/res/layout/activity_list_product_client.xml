@@ -29,7 +29,7 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginRight="-17dp"
 
-                    app:srcCompat="@drawable/baseline_keyboard_arrow_left_24" />
+                    app:srcCompat="@drawable/baseline_keyboard_arrow_left_24_white" />
 
                 <EditText
                     android:id="@+id/searchEditText3"

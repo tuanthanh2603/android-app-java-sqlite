@@ -32,5 +32,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         TextView textViewCategoryId = findViewById(R.id.tvidp);
         textViewCategoryId.setText("Product ID =  " + selectedProductId);
+        addControl();
+
+    }
+    private void addControl(){
+
     }
 }
