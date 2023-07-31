@@ -20,8 +20,9 @@
             <!-- Top Menu Bar -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:background="#3070B7"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <EditText
@@ -58,7 +59,6 @@
 
                 <!-- Nếu bạn muốn thêm hành động tìm kiếm tự động, bạn có thể sử dụng sự kiện textChange của EditText
         và thực hiện tìm kiếm dựa trên nội dung nhập vào. Không cần sử dụng button. -->
-
             </RelativeLayout>
 
             <!-- Banner cứng-->
@@ -317,28 +317,29 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardBackgroundColor="#3170B5"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
                         app:cardCornerRadius="50dp">
 
                         <ImageView
-                            android:id="@+id/ivThanhVien"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:id="@+id/ivDuocPham"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/history" />
+                            android:src="@drawable/duocpham" />
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/tvThanhVien"
-                        android:layout_width="60dp"
+                        android:id="@+id/tvDuocPham"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:text="Lịch sử thành viên"
-                        android:textSize="13dp" />
+                        android:textStyle="bold"
+                        android:text="Dược phẩm"
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -349,28 +350,29 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:cardBackgroundColor="#3170B5"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
                         app:cardCornerRadius="50dp">
 
                         <ImageView
-                            android:id="@+id/ivTuVan"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:id="@+id/ivSucKhoe"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/chat_icon" />
+                            android:src="@drawable/chamsocsuckhoe" />
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/tvTuVan"
-                        android:layout_width="60dp"
+                        android:id="@+id/tvSucKhoe"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:text="Tư vấn trực tuyến"
-                        android:textSize="13dp" />
+                        android:textStyle="bold"
+                        android:text="Chăm sóc sức khỏe"
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -381,30 +383,205 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:cardBackgroundColor="#3170B5"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
                         app:cardCornerRadius="50dp">
 
                         <ImageView
-                            android:id="@+id/ivDSOnline"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:id="@+id/ivCaNhan"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/video_call" />
+                            android:src="@drawable/chamsoccanhan" />
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/tvDSOnline"
-                        android:layout_width="60dp"
+                        android:id="@+id/tvCaNhan"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:text="Dược sĩ trực tuyến"
-                        android:textSize="13dp" />
+                        android:textStyle="bold"
+                        android:text="Chăm sóc cá nhân"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/ivTienLoi"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/sanphamtienloi" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tvTienLoi"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Sản phẩm tiện lợi"
+                        android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <!--Danh mục sản phẩm hàng 2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/ivTPChucNang"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/thucphamchucnang" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tvTPChucNang"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Thực phẩm chức năng"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/ivMeVaBe"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/mevabe" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tvMeVaBe"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Mẹ và Bé"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/ivSacDep"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/chamsocsacdep" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tvSacDep"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Chăm sóc sắc đẹp"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        app:cardBackgroundColor="#D0E2F0"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/ivThietBiYTe"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/thietbiyte" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/tvThietBiYTe"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Thiết bị y tế"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </ScrollView>
