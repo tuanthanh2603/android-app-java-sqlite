@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.projectandroid03.Activity.Adapter.CategoryAdapter;
 import com.projectandroid03.Activity.Adapter.CategoryAdapterClient;
@@ -95,7 +96,8 @@ public class FragmentCategory extends Fragment {
                 Category selectedCategory = categoryAdapter.getCategoryAtPosition(position);
                 if(selectedCategory != null){
                     Intent intent = new Intent(getContext(), ListProductClient.class);
-                    intent.putExtra("selectedCategoryId", selectedCategory);
+                    intent.putExtra("selectedCategoryId", selectedCategory.getCategoryId());
+                    Toast.makeText(getContext(), "Bạn đã chọn danh mục: " + selectedCategory.getCategoryName(), Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
 
