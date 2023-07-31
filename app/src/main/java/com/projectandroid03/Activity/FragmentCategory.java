@@ -1,6 +1,7 @@
 package com.projectandroid03.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.projectandroid03.Activity.Adapter.CategoryAdapter;
@@ -85,6 +87,17 @@ public class FragmentCategory extends Fragment {
         CategoryAdapterClient categoryAdapter = new CategoryAdapterClient(getContext(),categoryList);
         listView.setAdapter(categoryAdapter);
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Category selectedCategory = (Category) categoryAdapter.getItem(position);
+
+                Intent intent = new Intent(getContext(), ListProductClient.class);
+//                intent.putExtra("selectedCategory", selectedCategory.getCategoryId());
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
