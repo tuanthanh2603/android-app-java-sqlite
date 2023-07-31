@@ -43,7 +43,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         Product product = getItem(position);
         int categoryId = product.getCategory_id();
 
-        CategoryHandler categoryHandler = new CategoryHandler(getContext());
+        CategoryHandler categoryHandler = new CategoryHandler(this.getContext());
         String categoryName = categoryHandler.getCategoryNameByCategoryId(categoryId);
 
 

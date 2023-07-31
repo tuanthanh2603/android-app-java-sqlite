@@ -1,5 +1,6 @@
 package com.projectandroid03.Activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.projectandroid03.Activity.Adapter.CategoryAdapter;
+import com.projectandroid03.Activity.Adapter.CategoryAdapterClient;
+import com.projectandroid03.Activity.Handler.CategoryHandler;
+import com.projectandroid03.Activity.Model.Category;
 import com.projectandroid03.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +27,10 @@ public class FragmentCategory extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private ListView listView;
+    private CategoryHandler categoryHandler;
+    private CategoryAdapterClient adapter;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -54,13 +66,26 @@ public class FragmentCategory extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_category, container, false);
+
+        listView = (ListView) rootView.findViewById(R.id.listViewCate);
+        categoryHandler = new CategoryHandler(getContext());
+        List<Category> categoryList = categoryHandler.getAllCategories();
+        CategoryAdapterClient categoryAdapter = new CategoryAdapterClient(getContext(),categoryList);
+        listView.setAdapter(categoryAdapter);
+
+
+        return rootView;
     }
 }
