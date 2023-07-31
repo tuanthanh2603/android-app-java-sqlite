@@ -14,7 +14,7 @@ import java.util.List;
 
 public class UserHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "android04.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 14;
 
     public UserHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

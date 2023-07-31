@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryHandler extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "android04.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final String DATABASE_NAME = "android05.db";
+    private static final int DATABASE_VERSION = 14;
     public CategoryHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -30,6 +30,19 @@ public class CategoryHandler extends SQLiteOpenHelper {
 
 
 
+
+    }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if(oldVersion > 13){
+            String createTableQuery2 = "CREATE TABLE tbl_category ("
+                    + "category_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "category_name TEXT,"
+                    + "category_image TEXT"
+                    + ")";
+            db.execSQL(createTableQuery2);
+
+        }
 
     }
     public List<Category> getAllCategories() {
@@ -89,10 +102,7 @@ public class CategoryHandler extends SQLiteOpenHelper {
 
 
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
 
 
     public boolean deleteCategory(int categoryId) {
