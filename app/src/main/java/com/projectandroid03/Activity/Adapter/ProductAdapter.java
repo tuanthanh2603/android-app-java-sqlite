@@ -48,7 +48,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
 
 
-        // Hiển thị thông tin sản phẩm và tên danh mục tương ứng
+
 //        imgProduct.setImageURI(product.getProduct_image());
 
         tvProductName.setText(product.getProduct_name());

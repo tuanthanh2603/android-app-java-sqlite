@@ -74,7 +74,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(Uri result) {
                 if (result != null) {
-                    // Hiển thị ảnh đã chọn vào ImageView
+
                     selectedImageUri = result;
                     imgCategory.setImageURI(result);
                     String uriString = selectedImageUri.toString();
@@ -131,7 +131,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         if(newRowId != -1){
             isCategoryAdded = true;
         }else {
-            // Thêm danh mục thất bại
+
             isCategoryAdded = false;
         }
         return isCategoryAdded;
@@ -188,7 +188,7 @@ public class AddCategoryActivity extends AppCompatActivity {
 //        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
 //        String imageFileName = "IMG_" + timeStamp + ".jpg";
 //
-//        // Lưu ảnh vào thư mục ảnh của ứng dụng (hoặc có thể lưu vào thư mục khác tùy ý)
+//        // Lưu ảnh vào thư mục ảnh của ứng dụng
 //        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 //        File imageFile = new File(storageDir, imageFileName);
 //

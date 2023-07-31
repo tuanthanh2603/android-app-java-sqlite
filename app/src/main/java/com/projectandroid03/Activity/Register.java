@@ -45,10 +45,10 @@ public class Register extends AppCompatActivity {
     }
     private  void insertData(String phone, String password){
         if (isPhoneExist(phone)) {
-            // Số điện thoại đã tồn tại
+
             showToast("Số điện thoại đã tồn tại!");
         } else {
-            // Số điện thoại chưa tồn tại, tiến hành chèn dữ liệu
+
             ContentValues values = new ContentValues();
             values.put("user_phone", phone);
             values.put("user_password", password);

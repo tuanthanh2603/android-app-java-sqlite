@@ -39,13 +39,13 @@ public class Login extends AppCompatActivity {
                 showToast("Đăng nhập thành công!");
 
                 if ("0877717575".equals(phone)) {
-                    // Nếu phone là "0877717575", chuyển hướng tới AdminActivity
+                    // Nếu phone là "0877717575", chuyển hướng tới Admin
                     Intent intent = new Intent(Login.this, AdminActivity.class);
                     intent.putExtra("user_phone", phone);
                     intent.putExtra("user_password", password);
                     startActivity(intent);
                 } else {
-                    // Nếu không, chuyển hướng tới ProfileActivity
+
                     Intent intent = new Intent(Login.this, ProfileActivity.class);
                     intent.putExtra("user_phone", phone);
                     intent.putExtra("user_password", password);
@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
         String[] selectionArgs = {phone, password};
         Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
 
-        // Kiểm tra xem dữ liệu đã tìm thấy hay không
+
         boolean loginSuccessful = (cursor != null && cursor.getCount() > 0);
         if (cursor != null) {
             cursor.close();

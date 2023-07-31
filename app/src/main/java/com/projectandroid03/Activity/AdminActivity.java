@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminActivity.this, AddCategoryActivity.class);
 
-                // Bắt đầu mở Activity mới
+
                 startActivity(intent);
             }
         });

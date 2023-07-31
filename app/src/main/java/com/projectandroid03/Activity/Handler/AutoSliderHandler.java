@@ -6,7 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 public class AutoSliderHandler {
 
-    private static final long SLIDE_DELAY = 10000; // Độ trễ giữa các lần chuyển đổi (3 giây ở đây)
+    private static final long SLIDE_DELAY = 10000;
     private ViewPager viewPager;
     private int count;
     private Handler handler;

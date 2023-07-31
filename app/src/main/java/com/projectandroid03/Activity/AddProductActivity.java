@@ -62,7 +62,7 @@ public class AddProductActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
-        // Kiểm tra xem cơ sở dữ liệu đã tồn tại chưa
+
 
     }
 
@@ -146,11 +146,11 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
-            // Lấy URI của ảnh đã chọn
+
             if (data != null) {
                 Uri imageUri = data.getData();
                 try {
-                    // Hiển thị ảnh lên ImageView
+
                     selectedImageUri = imageUri;
                     imgProduct.setImageURI(imageUri);
 

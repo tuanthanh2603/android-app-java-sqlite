@@ -66,7 +66,7 @@ public class CategoryHandler extends SQLiteOpenHelper {
                 categories.add(category);
             }
         } catch (Exception e) {
-            // Xử lý lỗi nếu có
+
             e.printStackTrace();
         } finally {
             if (cursor != null) {

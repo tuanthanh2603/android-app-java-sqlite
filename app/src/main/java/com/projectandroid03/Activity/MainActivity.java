@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Xóa thiết kế action_bar mặc định của framelayout
+
         getSupportActionBar().hide();
 
         actionBar = getSupportActionBar();
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        // Mặc định hiển thị FragmentHome
+
         loadFragment(new FragmentHome());
 
 

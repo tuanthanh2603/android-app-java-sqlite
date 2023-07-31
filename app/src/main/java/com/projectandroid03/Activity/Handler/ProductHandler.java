@@ -51,7 +51,7 @@ public class ProductHandler  extends SQLiteOpenHelper {
         }
 
     }
-    // Phương thức để thêm sản phẩm vào bảng "tbl_product".
+
     public boolean addProductToDataBase(int categoryId, String productName, String productPrice, String productDescription, @NonNull Uri productImageUri) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

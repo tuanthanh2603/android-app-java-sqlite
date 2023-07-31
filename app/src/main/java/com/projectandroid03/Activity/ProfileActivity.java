@@ -41,8 +41,6 @@ public class ProfileActivity extends AppCompatActivity {
             edtpass.setText(userPass);
 //            edtname.setText(userName);
 
-            // Tùy chọn: Sử dụng số điện thoại để truy vấn cơ sở dữ liệu và lấy thông tin chi tiết của người dùng
-            // Ví dụ giả định: Hiển thị tên người dùng trong EditText edtname
 
         }
         addEvent();

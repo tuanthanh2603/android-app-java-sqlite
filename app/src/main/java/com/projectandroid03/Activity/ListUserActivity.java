@@ -48,7 +48,7 @@ public class ListUserActivity extends AppCompatActivity {
                 ArrayAdapter<String> adapter = (ArrayAdapter<String>) listView.getAdapter();
                 String selectedUserPhone = adapter.getItem(position);
                 if (selectedUserPhone.equals("0877717575")) {
-                    // Nếu user_phone là "0877717575", không cho phép xoá và hiển thị thông báo
+
                     new AlertDialog.Builder(ListUserActivity.this)
                             .setTitle("Thông báo")
                             .setMessage("Không được phép xoá thành viên này.")
@@ -56,7 +56,7 @@ public class ListUserActivity extends AppCompatActivity {
                             .show();
 
                 } else {
-                    // Nếu user_phone không là "0877717575", hiển thị dialog xác nhận xoá
+
                     new AlertDialog.Builder(ListUserActivity.this)
                             .setTitle("Xác nhận xoá")
                             .setMessage("Bạn có chắc chắn muốn xoá thành viên này?")
