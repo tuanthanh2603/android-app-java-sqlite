@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,11 +92,13 @@ public class FragmentCategory extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Category selectedCategory = (Category) categoryAdapter.getItem(position);
+                Category selectedCategory = categoryAdapter.getCategoryAtPosition(position);
+                if(selectedCategory != null){
+                    Intent intent = new Intent(getContext(), ListProductClient.class);
+                    intent.putExtra("selectedCategoryId", selectedCategory);
+                    startActivity(intent);
+                }
 
-                Intent intent = new Intent(getContext(), ListProductClient.class);
-//                intent.putExtra("selectedCategory", selectedCategory.getCategoryId());
-                startActivity(intent);
             }
         });
 

@@ -49,6 +49,11 @@
                 android:padding="4dp"
                 android:src="@drawable/cart" />
         </RelativeLayout>
+        <TextView
+            android:id="@+id/textViewCategoryId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category ID: " />
 
         <GridView
             android:id="@+id/girdViewProductClient"

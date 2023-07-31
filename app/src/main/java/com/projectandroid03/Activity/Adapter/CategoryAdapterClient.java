@@ -16,7 +16,7 @@ import com.projectandroid03.R;
 
 import java.util.List;
 
-public class CategoryAdapterClient extends ArrayAdapter {
+public class CategoryAdapterClient extends ArrayAdapter<Category> {
     public CategoryAdapterClient(@NonNull Context context, List<Category> categoryList) {
         super(context, 0, categoryList);
     }
@@ -37,5 +37,8 @@ public class CategoryAdapterClient extends ArrayAdapter {
 
         return convertView;
 
+    }
+    public Category getCategoryAtPosition(int position) {
+        return getItem(position);
     }
 }

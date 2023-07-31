@@ -103,4 +103,51 @@ public class ProductHandler  extends SQLiteOpenHelper {
         }
         return products;
     }
+
+    public List<Product> getProductsByCategoryId(int selectedCategoryId) {
+        List<Product> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            String[] projection = {
+                    "product_id",
+                    "product_name",
+                    "product_price",
+                    "product_image",
+                    "category_id",
+                    "product_desc"
+            };
+            String selection = "category_id=?";
+            String[] selectionArgs = {String.valueOf(selectedCategoryId)}; // Đưa giá trị selectedCategoryId vào selectionArgs
+
+            cursor = db.query("tbl_product", projection, selection, selectionArgs, null, null, null);
+            int productIdIndex = cursor.getColumnIndex("product_id");
+            int productNameIndex = cursor.getColumnIndex("product_name");
+            int productPriceIndex = cursor.getColumnIndex("product_price");
+            int productImageIndex = cursor.getColumnIndex("product_image");
+            int categoryIdIndex = cursor.getColumnIndex("category_id");
+            int productDescIndex = cursor.getColumnIndex("product_desc");
+
+            while (cursor.moveToNext()) {
+                int productId = cursor.getInt(productIdIndex);
+                int categoryId = cursor.getInt(categoryIdIndex);
+
+                String productName = cursor.getString(productNameIndex);
+                String productPrice = cursor.getString(productPriceIndex);
+                String productImage = cursor.getString(productImageIndex);
+                String productDesc = cursor.getString(productDescIndex);
+                Uri imageUri = Uri.parse(productImage);
+
+                Product product = new Product(productId, categoryId, productName, productPrice, productDesc, imageUri);
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return productList;
+    }
 }
