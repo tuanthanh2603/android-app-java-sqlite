@@ -1,6 +1,6 @@
 package com.projectandroid03.Activity;
 
-import static com.projectandroid03.R.id.tvidp;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,10 +28,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         int selectedProductId = getIntent().getIntExtra("selectedProductId", -1);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
 
-        TextView textViewCategoryId = findViewById(R.id.tvidp);
-        textViewCategoryId.setText("Product ID =  " + selectedProductId);
+
+//        TextView textViewCategoryId = findViewById(R.id.tvidp);
+//        textViewCategoryId.setText("Product ID =  " + selectedProductId);
         addControl();
 
     }
