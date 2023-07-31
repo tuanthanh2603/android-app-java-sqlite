@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.projectandroid03.Activity.Adapter.CategoryAdapter;
+import com.projectandroid03.Activity.Handler.CategoryHandler;
 import com.projectandroid03.Activity.Model.Category;
 import com.projectandroid03.R;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class ListCategoryActivity extends AppCompatActivity {
     ActionBar actionBar;
 
-    private  CategoryHandler categoryHandler;
+    private CategoryHandler categoryHandler;
     private ListView listView;
     private CategoryAdapter adapter;
 

@@ -1,4 +1,4 @@
-package com.projectandroid03.Activity;
+package com.projectandroid03.Activity.Handler;
 
 import android.content.Context;
 import android.database.Cursor;
