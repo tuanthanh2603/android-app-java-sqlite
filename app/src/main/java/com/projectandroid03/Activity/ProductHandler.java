@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ProductHandler  extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "android04.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     public ProductHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

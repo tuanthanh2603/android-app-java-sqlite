@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserHandler extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "android03.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final String DATABASE_NAME = "android04.db";
+    private static final int DATABASE_VERSION = 7;
 
     public UserHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,10 +35,17 @@ public class UserHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 4 && newVersion >= 5) {
-            String addColumnQuery = "ALTER TABLE tbl_users ADD COLUMN user_name TEXT DEFAULT 'Khách hàng'";
-            db.execSQL(addColumnQuery);
+        if(oldVersion < 6){
+            String createTableQuery = "CREATE TABLE tbl_user ("
+                    + "user_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "user_phone TEXT,"
+                    + "user_password TEXT"
+
+                    + ")";
+            db.execSQL(createTableQuery);
+
         }
+
     }
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
@@ -69,5 +76,10 @@ public class UserHandler extends SQLiteOpenHelper {
         }
 
         return userList;
+    }
+    public void deleteUser(User user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("tbl_user", "user_id = ?", new String[]{String.valueOf(user.getUserId())});
+        db.close();
     }
 }
