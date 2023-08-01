@@ -2,6 +2,8 @@ package com.projectandroid03.Activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projectandroid03.Activity.Handler.UserHandler;
@@ -18,7 +21,8 @@ import com.projectandroid03.R;
 public class ProfileActivity extends AppCompatActivity {
     ActionBar actionBar;
     private EditText edtname, edtphone, edtpass;
-    private Button btnLuu, btnDangxuat;
+    private Button btnLuu, btnDangxuat, btnHome;
+    private TextView iduser2;
 
     SQLiteDatabase db;
 
@@ -36,32 +40,34 @@ public class ProfileActivity extends AppCompatActivity {
         if (intent.hasExtra("user_phone")) {
             String userPhone = intent.getStringExtra("user_phone");
             String userPass = intent.getStringExtra("user_password");
+            String userId = intent.getStringExtra("selectedUserId");
 //            String userName = getUserNameFromDatabase(userPhone);
+            iduser2.setText("User ID: "+userId);
             edtphone.setText(userPhone);
             edtpass.setText(userPass);
 //            edtname.setText(userName);
 
 
         }
+
+
         addEvent();
     }
-
-
-//    private String getUserNameFromDatabase(String userPhone) {
-//        String userNameFromDatabase = null;
-//        UserHandler userHandler = new UserHandler(this);
-//        SQLiteDatabase db = userHandler.getReadableDatabase();
-//        String[] projection = {"user_name"};
-//        String selection = "user_phone = ?";
-//        String[] selectionArgs = {userPhone};
-//        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
-//        if (cursor != null && cursor.moveToFirst()) {
-//            userNameFromDatabase = cursor.getString(cursor.getColumnIndex("user_name"));
-//            cursor.close();
-//        }
-//        return userNameFromDatabase;
-//    }
     private void addEvent(){
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userId = getIntent().getStringExtra("selectedUserId");
+
+
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+
+                intent.putExtra("selectedUserId", userId);
+                startActivity(intent);
+
+
+            }
+        });
         btnDangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void updateUserInfo(String newPhone, String newPassword) {
@@ -108,6 +115,8 @@ public class ProfileActivity extends AppCompatActivity {
         edtpass = (EditText) findViewById(R.id.edtpass);
         btnLuu = (Button) findViewById(R.id.btnLuu);
         btnDangxuat = (Button) findViewById(R.id.btnDangxuat);
+        iduser2 = (TextView) findViewById(R.id.iduser2);
+        btnHome = (Button) findViewById(R.id.btnHome);
 
     }
 }

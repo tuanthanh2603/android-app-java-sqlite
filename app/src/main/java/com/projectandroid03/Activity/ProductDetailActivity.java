@@ -28,10 +28,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         int selectedProductId = getIntent().getIntExtra("selectedProductId", -1);
 
+        int selectedUserId = getIntent().getIntExtra("selectedUserId", -1);
 
 
-//        TextView textViewCategoryId = findViewById(R.id.tvidp);
-//        textViewCategoryId.setText("Product ID =  " + selectedProductId);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        TextView textViewProductId = findViewById(R.id.idproduct);
+        textViewProductId.setText("Product ID:  " + selectedProductId);
+
+        TextView textViewUserId = findViewById(R.id.iduser);
+        textViewUserId.setText("User ID:  " + selectedUserId);
+
         addControl();
 
     }

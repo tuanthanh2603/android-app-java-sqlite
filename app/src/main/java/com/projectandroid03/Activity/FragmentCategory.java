@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projectandroid03.Activity.Adapter.CategoryAdapter;
@@ -34,6 +35,7 @@ public class FragmentCategory extends Fragment {
     private ListView listView;
     private CategoryHandler categoryHandler;
     private CategoryAdapterClient adapter;
+    private String userId;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -89,15 +91,28 @@ public class FragmentCategory extends Fragment {
         CategoryAdapterClient categoryAdapter = new CategoryAdapterClient(getContext(),categoryList);
         listView.setAdapter(categoryAdapter);
 
+//        String userId = getArguments().getString("selectedUserId");
+//        TextView textViewUserId = rootView.findViewById(R.id.textView11);
+//        textViewUserId.setText("User ID: " + userId);
 
+        if(getArguments() != null){
+            userId = getArguments().getString("selectedUserId");
+            TextView textViewUserId = rootView.findViewById(R.id.textView11);
+            textViewUserId.setText("User ID: " + userId);
+        } else {
+
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Category selectedCategory = categoryAdapter.getCategoryAtPosition(position);
                 if(selectedCategory != null){
                     Intent intent = new Intent(getContext(), ListProductClient.class);
+                    intent.putExtra("selectedUserId", userId);
                     intent.putExtra("selectedCategoryId", selectedCategory.getCategoryId());
                     Toast.makeText(getContext(), "Bạn đã chọn danh mục: " + selectedCategory.getCategoryName(), Toast.LENGTH_SHORT).show();
+
+
                     startActivity(intent);
                 }
 

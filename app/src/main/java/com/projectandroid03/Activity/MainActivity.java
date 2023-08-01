@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -15,6 +16,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 //import com.projectandroid03.Controller.CategoryHandler;
 //import com.projectandroid03.Model.Category;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
     ActionBar actionBar;
+    private String userId;
+
 
 
 
@@ -41,18 +45,25 @@ public class MainActivity extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.frameFragment);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        TextView textView = (TextView) findViewById(R.id.textView10);
+        userId = getIntent().getStringExtra("selectedUserId");
+        textView.setText("User ID: "+ userId);
+
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+
                 if (id == R.id.item_home) {
                     loadFragment(new FragmentHome());
                     return true;
                 } else if (id == R.id.item_category) {
+
                     loadFragment(new FragmentCategory());
+
                     return true;
                 } else if (id == R.id.item_order) {
                     loadFragment(new FragmentOrder());
@@ -87,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
+        Bundle bundle = new Bundle();
+        bundle.putString("selectedUserId", userId);
+        fragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameFragment, fragment);
         transaction.addToBackStack(null);
