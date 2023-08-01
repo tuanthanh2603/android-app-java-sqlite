@@ -32,6 +32,7 @@ public class ListProductClient extends AppCompatActivity {
     private ListView listView;
     private GridView gridView;
     private ProductAdapterClient adapterClient;
+//    private String userId;
 
     private ProductHandler productHandler;
 
@@ -50,7 +51,16 @@ public class ListProductClient extends AppCompatActivity {
         int selectedCategoryId = getIntent().getIntExtra("selectedCategoryId", -1);
 
         TextView textViewCategoryId = findViewById(R.id.textViewCategoryId);
-        textViewCategoryId.setText("Category ID =  " + selectedCategoryId);
+        textViewCategoryId.setText("Category ID:  " + selectedCategoryId);
+
+
+        String userId = getIntent().getStringExtra("selectedUserId");
+        TextView textViewUserId = findViewById(R.id.textViewUserId);
+        textViewUserId.setText("User ID: " + userId);
+
+
+
+
 //        Log.d("Selected Category ID", String.valueOf(selectedCategoryId));
 
 

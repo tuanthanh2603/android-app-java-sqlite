@@ -49,6 +49,7 @@
     </androidx.appcompat.widget.Toolbar>
 
 
+
     <ScrollView
         android:layout_width="match_parent"
 
@@ -64,13 +65,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idproduct"
+                android:text="Product ID:"
+                tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:id="@+id/iduser"
+                android:text="User ID:"
+                tools:ignore="MissingConstraints" />
 
             <ImageView
+                android:id="@+id/imageProduct3"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:src="@drawable/thuockhangdiung" />
 
             <TextView
+                android:id="@+id/nameProduct3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -82,6 +98,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/priceProduct3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -148,6 +165,7 @@
                 android:background="#AAA7A7" />
 
             <TextView
+                android:id="@+id/descProduct3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -175,6 +193,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
@@ -188,7 +207,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/edtComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -82,4 +82,43 @@ public class UserHandler extends SQLiteOpenHelper {
         db.delete("tbl_user", "user_id = ?", new String[]{String.valueOf(user.getUserId())});
         db.close();
     }
+
+    public String getUserIdFromSQLite(String phone, String password) {
+        String user_id = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"user_id"};
+        String selection = "user_phone = ? AND user_password = ?";
+        String[] selectionArgs = {phone, password};
+        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            // Kiểm tra xem cột "user_id" có tồn tại trong Cursor hay không
+            int userIdColumnIndex = cursor.getColumnIndex("user_id");
+            if (userIdColumnIndex != -1) {
+                user_id = cursor.getString(userIdColumnIndex);
+            }
+            cursor.close();
+        }
+        return user_id;
+    }
+
+    public String getUserPhoneById(int userId) {
+        String userPhone = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"user_phone"};
+        String selection = "user_id=?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int userPhoneIndex = cursor.getColumnIndex("user_phone");
+            if(userPhoneIndex != -1){
+                userPhone = cursor.getString(userPhoneIndex);
+            }
+            cursor.close();
+
+        }
+
+
+        return userPhone;
+    }
 }

@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -42,6 +44,11 @@
                 android:padding="4dp"
                 android:src="@drawable/cart" />
         </RelativeLayout>
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User ID: " />
 
         <ListView
             android:id="@+id/listViewCate"

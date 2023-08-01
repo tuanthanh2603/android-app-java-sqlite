@@ -87,6 +87,15 @@
             android:layout_marginTop="20dp"/>
 
         <Button
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trờ lại trang chủ"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
             android:id="@+id/btnDangxuat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,5 +103,10 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iduser2"
+            android:text="User ID: "/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

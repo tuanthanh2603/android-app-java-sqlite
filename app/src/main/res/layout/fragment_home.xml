@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.FragmentHome">
+    tools:context=".Activity.FragmentHome"
+    android:id="@+id/fragment_container">
 
     <!-- TODO: Update blank fragment layout -->
     <!-- Top Menu Bar -->

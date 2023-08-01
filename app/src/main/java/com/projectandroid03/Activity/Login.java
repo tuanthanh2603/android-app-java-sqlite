@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.projectandroid03.Activity.Handler.UserHandler;
+import com.projectandroid03.Activity.Model.Product;
 import com.projectandroid03.R;
 
 public class Login extends AppCompatActivity {
@@ -47,22 +49,21 @@ public class Login extends AppCompatActivity {
                 } else {
 
                     Intent intent = new Intent(Login.this, ProfileActivity.class);
+
                     intent.putExtra("user_phone", phone);
                     intent.putExtra("user_password", password);
+
+                    String user_id = dbHelper.getUserIdFromSQLite(phone, password);
+                    intent.putExtra("selectedUserId", user_id);
                     startActivity(intent);
+
+
                 }
 
                 finish();
             } else {
                 showToast("Số điện thoại hoặc mật khẩu không đúng!");
             }
-
-
-
-
-
-
-
         });
     }
 
