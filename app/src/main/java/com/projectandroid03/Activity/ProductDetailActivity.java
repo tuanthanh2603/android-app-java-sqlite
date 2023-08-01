@@ -3,6 +3,7 @@ package com.projectandroid03.Activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -16,10 +17,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projectandroid03.Activity.Adapter.CommentAdapter;
 import com.projectandroid03.Activity.Handler.CommentHandler;
 import com.projectandroid03.Activity.Handler.ProductHandler;
+import com.projectandroid03.Activity.Model.Comment;
 import com.projectandroid03.Activity.Model.Product;
+import com.projectandroid03.Activity.Model.User;
 import com.projectandroid03.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private TextView nameProduct, priceProduct, descProduct;
@@ -79,6 +86,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
         CommentHandler commentHandler = new CommentHandler(this);
+        List<Comment> commentList = commentHandler.getAllComment(selectedProductId);
+        RecyclerView recyclerView1 = findViewById(R.id.listComment);
+        List<User> userList = new ArrayList<>();
+        CommentAdapter commentAdapter = new CommentAdapter(this, commentList, userList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        recyclerView1.setLayoutManager(layoutManager);
+        recyclerView1.setAdapter(commentAdapter);
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +105,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     if (commentId != -1) {
                         showToast("Bình luận thành công!");
+
                         edtComment.setText("");
+                        List<Comment> commentList = commentHandler.getAllComment(selectedProductId);
+                        commentAdapter.updateData(commentList);
                     } else {
                         showToast("Bình luận thất bại!");
                     }
@@ -104,6 +121,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
     }
     private void showToast(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();

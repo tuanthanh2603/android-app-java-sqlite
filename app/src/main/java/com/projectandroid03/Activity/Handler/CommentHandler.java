@@ -2,10 +2,16 @@ package com.projectandroid03.Activity.Handler;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.projectandroid03.Activity.Model.Comment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommentHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "android07.db";
@@ -41,5 +47,44 @@ public class CommentHandler extends SQLiteOpenHelper {
         long id = db.insert("tbl_comment", null, values);
         db.close();
         return id;
+    }
+
+    public List<Comment> getAllComment(int selectedProductId) {
+        List<Comment> commentList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try{
+            String[] projection = {
+                    "comment_id",
+                    "user_id",
+                    "product_id",
+                    "comment_desc"
+            };
+            String selection = "product_id=?";
+            String[] selectionArgs = {String.valueOf(selectedProductId)};
+            cursor = db.query("tbl_comment", projection, selection, selectionArgs, null, null, null);
+            int commentIdIndex = cursor.getColumnIndex("comment_id");
+            int userIdIndex = cursor.getColumnIndex("user_id");
+            int productIdIndex = cursor.getColumnIndex("product_id");
+            int commentDescIndex = cursor.getColumnIndex("comment_desc");
+
+            while (cursor.moveToNext()){
+                int commentId = cursor.getInt(commentIdIndex);
+                int userId = cursor.getInt(userIdIndex);
+                int productId = cursor.getInt(productIdIndex);
+                String commentDesc = cursor.getString(commentDescIndex);
+
+                Comment comment = new Comment(commentId, userId, productId, commentDesc);
+                commentList.add(comment);
+
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(cursor != null){
+                cursor.close();
+            }
+        }
+        return  commentList;
     }
 }

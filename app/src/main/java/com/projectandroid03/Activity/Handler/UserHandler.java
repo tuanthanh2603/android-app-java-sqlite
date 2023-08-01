@@ -100,4 +100,25 @@ public class UserHandler extends SQLiteOpenHelper {
         }
         return user_id;
     }
+
+    public String getUserPhoneById(int userId) {
+        String userPhone = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"user_phone"};
+        String selection = "user_id=?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int userPhoneIndex = cursor.getColumnIndex("user_phone");
+            if(userPhoneIndex != -1){
+                userPhone = cursor.getString(userPhoneIndex);
+            }
+            cursor.close();
+
+        }
+
+
+        return userPhone;
+    }
 }
