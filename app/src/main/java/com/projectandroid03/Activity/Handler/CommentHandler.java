@@ -1,5 +1,6 @@
 package com.projectandroid03.Activity.Handler;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -30,5 +31,15 @@ public class CommentHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+    public long addComment(int productId, String comment, int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("product_id", productId);
+        values.put("user_id", userId);
+        values.put("comment_desc", comment);
+        long id = db.insert("tbl_comment", null, values);
+        db.close();
+        return id;
     }
 }
