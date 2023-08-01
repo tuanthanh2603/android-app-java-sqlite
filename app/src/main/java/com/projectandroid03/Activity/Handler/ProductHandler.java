@@ -22,6 +22,8 @@ public class ProductHandler  extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableQuery3 = "CREATE TABLE tbl_product ("
@@ -150,4 +152,52 @@ public class ProductHandler  extends SQLiteOpenHelper {
         }
         return productList;
     }
+    public Product getProductById(int selectedProductId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        Product product = null;
+        try {
+            String[] projection = {
+                    "product_id",
+                    "product_name",
+                    "product_price",
+                    "product_image",
+                    "category_id",
+                    "product_desc"
+            };
+            String selection = "product_id=?";
+            String[] selectionArgs = {String.valueOf(selectedProductId)};
+
+            cursor = db.query("tbl_product", projection, selection, selectionArgs, null, null, null);
+            int productIdIndex = cursor.getColumnIndex("product_id");
+            int productNameIndex = cursor.getColumnIndex("product_name");
+            int productPriceIndex = cursor.getColumnIndex("product_price");
+            int productImageIndex = cursor.getColumnIndex("product_image");
+            int categoryIdIndex = cursor.getColumnIndex("category_id");
+            int productDescIndex = cursor.getColumnIndex("product_desc");
+
+            if (cursor.moveToFirst()) {
+                int productId = cursor.getInt(productIdIndex);
+                int categoryId = cursor.getInt(categoryIdIndex);
+
+                String productName = cursor.getString(productNameIndex);
+                String productPrice = cursor.getString(productPriceIndex);
+                String productImage = cursor.getString(productImageIndex);
+                String productDesc = cursor.getString(productDescIndex);
+                Uri imageUri = Uri.parse(productImage);
+
+                product = new Product(productId, categoryId, productName, productPrice, productDesc, imageUri);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return product;
+    }
+
+
+
 }

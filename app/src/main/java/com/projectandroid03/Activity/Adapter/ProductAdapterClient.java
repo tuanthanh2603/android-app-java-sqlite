@@ -1,5 +1,6 @@
 package com.projectandroid03.Activity.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -79,12 +80,14 @@ public class ProductAdapterClient extends RecyclerView.Adapter<ProductAdapterCli
         ImageView imgProduct;
         TextView tvProductNameClient;
         TextView tvProductPriceClient;
+        private String userId;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imgProduct = itemView.findViewById(R.id.imageProductClient);
             tvProductNameClient = itemView.findViewById(R.id.nameProductClient);
             tvProductPriceClient = itemView.findViewById(R.id.priceProductClient);
+            String userId = ((Activity) context).getIntent().getStringExtra("selectedUserId");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -95,7 +98,9 @@ public class ProductAdapterClient extends RecyclerView.Adapter<ProductAdapterCli
 
 
                         Intent intent = new Intent(context, ProductDetailActivity.class);
+                        intent.putExtra("selectedUserId", userId);
                         intent.putExtra("selectedProductId", selectedProductId.getProduct_id());
+
                         context.startActivity(intent);
                     }
                 }
