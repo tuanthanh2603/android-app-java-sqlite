@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projectandroid03.Activity.Handler.UserHandler;
+import com.projectandroid03.Activity.Model.User;
 import com.projectandroid03.R;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView iduser2;
 
     SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +44,31 @@ public class ProfileActivity extends AppCompatActivity {
             String userPass = intent.getStringExtra("user_password");
             String userId = intent.getStringExtra("selectedUserId");
 //            String userName = getUserNameFromDatabase(userPhone);
-            iduser2.setText("User ID: "+userId);
+
             edtphone.setText(userPhone);
             edtpass.setText(userPass);
 //            edtname.setText(userName);
 
 
         }
+        String userId = getIntent().getStringExtra("selectedUserId");
+        iduser2.setText("User ID: "+userId);
+        UserHandler userHandler = new UserHandler(this);
+
+        User user = userHandler.getUserById(Integer.parseInt(userId));
+        if (user != null) {
+            // Hiển thị thông tin user_phone và user_pass lên EditText
+            edtphone.setText(user.getUserPhone());
+            edtpass.setText(user.getUserPassword());
+        }
+//        } else {
+//            // Xử lý nếu không tìm thấy người dùng với userId tương ứng trong cơ sở dữ liệu
+//            edtphone.setText("User Phone: Not found");
+//            edtpass.setText("User Pass: Not found");
+//        }
+
+
+
 
 
         addEvent();

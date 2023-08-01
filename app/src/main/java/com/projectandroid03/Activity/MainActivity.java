@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 //import com.projectandroid03.Controller.CategoryHandler;
 //import com.projectandroid03.Model.Category;
+import com.projectandroid03.Activity.Model.FragmentOrderLogged;
 import com.projectandroid03.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,10 +67,21 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 } else if (id == R.id.item_order) {
-                    loadFragment(new FragmentOrder());
+                    if(userId == null){
+                        loadFragment(new FragmentOrder());
+                    }else {
+                        loadFragment(new FragmentOrderLogged());
+                    }
+
                     return true;
                 } else if (id == R.id.item_account) {
-                    loadFragment(new FragmentAccount());
+                    if(userId == null){
+                        loadFragment(new FragmentAccount());
+                    }
+                    else {
+                        loadFragment(new FragmentUserLogged());
+                    }
+
                     return true;
                 }
                 return false;
@@ -96,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void loadFragment(Fragment fragment) {
         Bundle bundle = new Bundle();

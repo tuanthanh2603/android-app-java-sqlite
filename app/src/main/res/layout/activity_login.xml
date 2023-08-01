@@ -66,6 +66,22 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:text="Đăng nhập" />
+
+        <Button
+            android:id="@+id/btndangky"
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký" />
+
+        <Button
+            android:id="@+id/btnhome"
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Trang chủ" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

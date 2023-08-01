@@ -56,14 +56,16 @@ public class UserHandler extends SQLiteOpenHelper {
             cursor = db.query("tbl_user", null, null, null, null, null, null);
             int userIdIndex = cursor.getColumnIndex("user_id");
             int userPhoneIndex = cursor.getColumnIndex("user_phone");
+            int userPassIndex = cursor.getColumnIndex("user_password");
 
 
             while (cursor.moveToNext()) {
                 int userId = cursor.getInt(userIdIndex);
                 String userPhone = cursor.getString(userPhoneIndex);
+                String userPass = cursor.getString(userPassIndex);
 
 
-                User user = new User(userId, userPhone);
+                User user = new User(userId, userPhone, userPass);
                 userList.add(user);
             }
         } catch (Exception e) {
@@ -121,4 +123,27 @@ public class UserHandler extends SQLiteOpenHelper {
 
         return userPhone;
     }
+
+    public User getUserById(int userId) {
+        User user = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"user_phone", "user_password"};
+        String selection = "user_id=?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        Cursor cursor = db.query("tbl_user", projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int userPhoneIndex = cursor.getColumnIndex("user_phone");
+            int userPassIndex = cursor.getColumnIndex("user_password");
+            if (userPhoneIndex != -1 && userPassIndex != -1) {
+                String userPhone = cursor.getString(userPhoneIndex);
+                String userPass = cursor.getString(userPassIndex);
+                user = new User(userId, userPhone, userPass);
+            }
+            cursor.close();
+        }
+
+        return user;
+    }
+
 }

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import com.projectandroid03.R;
 
 public class Login extends AppCompatActivity {
     ActionBar actionBar;
-    Button btndangnhap;
+    Button btndangnhap, btndangky, btnhome;
     EditText edtphone, edtpass;
     UserHandler dbHelper;
 
@@ -65,6 +66,20 @@ public class Login extends AppCompatActivity {
                 showToast("Số điện thoại hoặc mật khẩu không đúng!");
             }
         });
+        btndangky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
+            }
+        });
+        btnhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean checkLoginCredentials(String phone, String password) {
@@ -92,6 +107,8 @@ public class Login extends AppCompatActivity {
         btndangnhap = (Button) findViewById(R.id.btndangnhap);
         edtpass = (EditText) findViewById(R.id.edtpass);
         edtphone = (EditText) findViewById(R.id.edtphone);
+        btndangky = (Button) findViewById(R.id.btndangky);
+        btnhome = (Button) findViewById(R.id.btnhome);
     }
 
 }

@@ -1,5 +1,8 @@
 package com.projectandroid03.Activity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projectandroid03.R;
 
@@ -21,6 +27,8 @@ public class FragmentUserLogged extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private LinearLayout linearLayout;
+    private String userId;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -57,10 +65,31 @@ public class FragmentUserLogged extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_logged, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_logged, container, false);
+        linearLayout = (LinearLayout) view.findViewById(R.id.edit);
+        userId = getArguments().getString("selectedUserId");
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                intent.putExtra("selectedUserId", userId);
+                startActivity(intent);
+
+            }
+        });
+
+        return view;
+
     }
+
+    private void showToast(String message) {
+        Context context = requireContext();
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
 }
