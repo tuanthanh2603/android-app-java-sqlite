@@ -5,10 +5,37 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Model.FragmentOrderLogged">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#3070B7"
+            android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/searchCategory2"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/search_view_background"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Tìm trên Pharmacity"
+                android:padding="8dp"
+                android:paddingStart="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toRightOf="@id/searchCategory2"
+                android:padding="4dp"
+                android:src="@drawable/cart" />
+        </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>
