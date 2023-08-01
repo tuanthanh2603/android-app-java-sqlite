@@ -26,11 +26,6 @@ public class CategoryHandler extends SQLiteOpenHelper {
                 + "category_image TEXT"
                 + ")";
         db.execSQL(createTableQuery2);
-
-
-
-
-
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -99,11 +94,6 @@ public class CategoryHandler extends SQLiteOpenHelper {
 
         return categoryList;
     }
-
-
-
-
-
 
     public boolean deleteCategory(int categoryId) {
         SQLiteDatabase db = this.getWritableDatabase();
