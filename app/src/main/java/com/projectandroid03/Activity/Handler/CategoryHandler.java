@@ -1,10 +1,15 @@
 package com.projectandroid03.Activity.Handler;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.projectandroid03.Activity.Model.Category;
 
@@ -125,6 +130,29 @@ public class CategoryHandler extends SQLiteOpenHelper {
         }
 
         return categoryName;
+    }
+
+    public boolean updateCategory(int categoryId, String categoryName, @NonNull Uri categoryImageUri) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("category_id", categoryId);
+        values.put("category_name", categoryName);
+        values.put("category_image", categoryImageUri.toString());
+
+        Log.d("CategoryUpdate", "category_id: " + categoryId);
+
+        String selection = "category_id=?";
+        String[] selectionArgs = {String.valueOf(categoryId)};
+
+        try {
+            int rowsAffected = db.update("tbl_category", values, selection, selectionArgs);
+            db.close();
+            return rowsAffected != -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

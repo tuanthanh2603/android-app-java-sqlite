@@ -16,8 +16,20 @@
         android:layout_gravity="top"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/searchEditText"
+<!--        <EditText-->
+<!--            android:id="@+id/searchEditText"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:background="@drawable/search_view_background"-->
+<!--            android:drawableStart="@drawable/ic_search"-->
+<!--            android:hint="Giảm 30% khi mua 2 sản phẩm"-->
+<!--            android:padding="8dp"-->
+<!--            android:paddingStart="20dp" />-->
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewSearch"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -26,7 +38,8 @@
             android:drawableStart="@drawable/ic_search"
             android:hint="Giảm 30% khi mua 2 sản phẩm"
             android:padding="8dp"
-            android:paddingStart="20dp" />
+            android:paddingStart="20dp"
+            android:completionThreshold="1"/>
 
         <ImageView
             android:id="@+id/notify"
@@ -34,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="8dp"
-            android:layout_toRightOf="@id/searchEditText"
+            android:layout_toRightOf="@id/autoCompleteTextViewSearch"
             android:padding="4dp"
             android:src="@drawable/notify" />
 
@@ -582,6 +595,16 @@ và thực hiện tìm kiếm dựa trên nội dung nhập vào. Không cần s
                         android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
+            <ListView
+                android:id="@+id/listViewProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="1dp"
+                android:visibility="gone"
+                />
+
 
 
 

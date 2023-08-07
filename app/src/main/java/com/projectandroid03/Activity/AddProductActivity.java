@@ -61,15 +61,8 @@ public class AddProductActivity extends AppCompatActivity {
         ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoryList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
-
-
-
     }
-
-
     private void addEvent(){
-
-
         btnChooseImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +71,6 @@ public class AddProductActivity extends AppCompatActivity {
 
             }
         });
-
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,26 +89,17 @@ public class AddProductActivity extends AppCompatActivity {
                             edtProductDescription.setText("");
                         } else {
                             showToast("Thêm sản phẩm thất bại");
-
                             String ct = String.valueOf(categoryId);
                             tv3.setText(ct);
-
                             String uriString = selectedImageUri.toString();
                             tv2.setText(uriString);
-
                         }
-
-
                     } else {
                         showToast("Vui lòng chọn ảnh cho sản phẩm!");
                     }
-
                 }else {
                     showToast("Vui lòng nhập tên sản phẩm");
                 }
-
-
-
             }
         });
 

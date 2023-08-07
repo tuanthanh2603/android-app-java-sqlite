@@ -3,9 +3,11 @@ package com.projectandroid03.Activity.Handler;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -197,7 +199,75 @@ public class ProductHandler  extends SQLiteOpenHelper {
         }
         return product;
     }
+    public Product getProductByName(String productName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        Product product = null;
+        try {
+            String[] projection = {
+                    "product_id",
+                    "product_name",
+                    "product_price",
+                    "product_image",
+                    "category_id",
+                    "product_desc"
+            };
+            String selection = "product_name=?";
+            String[] selectionArgs = {productName};
 
+            cursor = db.query("tbl_product", projection, selection, selectionArgs, null, null, null);
+            int productIdIndex = cursor.getColumnIndex("product_id");
+            int productNameIndex = cursor.getColumnIndex("product_name");
+            int productPriceIndex = cursor.getColumnIndex("product_price");
+            int productImageIndex = cursor.getColumnIndex("product_image");
+            int categoryIdIndex = cursor.getColumnIndex("category_id");
+            int productDescIndex = cursor.getColumnIndex("product_desc");
+
+            if (cursor.moveToFirst()) {
+                int productId = cursor.getInt(productIdIndex);
+                int categoryId = cursor.getInt(categoryIdIndex);
+
+                String productPrice = cursor.getString(productPriceIndex);
+                String productImage = cursor.getString(productImageIndex);
+                String productDesc = cursor.getString(productDescIndex);
+                Uri imageUri = Uri.parse(productImage);
+
+                product = new Product(productId, categoryId, productName, productPrice, productDesc, imageUri);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return product;
+    }
+    public boolean updateProduct(int productId, int categoryId, String productName, String productPrice, String productDescription, @NonNull Uri productImageUri) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("category_id", categoryId);
+        values.put("product_name", productName);
+        values.put("product_price", productPrice);
+        values.put("product_desc", productDescription);
+        values.put("product_image", productImageUri.toString());
+
+        Log.d("ProductUpdate", "product_id: " + productId);
+
+
+        String selection = "product_id=?";
+        String[] selectionArgs = {String.valueOf(productId)};
+
+        try {
+            int rowsAffected = db.update("tbl_product", values, selection, selectionArgs);
+            db.close();
+            return rowsAffected != -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 }

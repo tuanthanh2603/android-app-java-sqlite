@@ -5,22 +5,28 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.projectandroid03.Activity.Adapter.CategoryAdapter;
 import com.projectandroid03.Activity.Handler.CategoryHandler;
 import com.projectandroid03.Activity.Model.Category;
+import com.projectandroid03.Activity.Model.Product;
 import com.projectandroid03.R;
 
 import java.util.List;
 
 public class ListCategoryActivity extends AppCompatActivity {
     ActionBar actionBar;
-
-    private CategoryHandler categoryHandler;
     private ListView listView;
-    private CategoryAdapter adapter;
+    private CategoryAdapter categoryAdapter;
+    private CategoryHandler categoryHandler;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +39,29 @@ public class ListCategoryActivity extends AppCompatActivity {
 
         categoryHandler = new CategoryHandler(this);
         List<Category> categories = categoryHandler.getAllCategories();
-        adapter = new CategoryAdapter(this, categories);
-        listView.setAdapter(adapter);
+        categoryAdapter = new CategoryAdapter(this, categories);
+        listView.setAdapter(categoryAdapter);
 
-        adapter.setOnCategoryLongClickListener(new CategoryAdapter.OnCategoryLongClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("ListView", "Item clicked at position: " + position);
+                Category selectedCategory = categoryAdapter.getItem(position);
+                Intent intent = new Intent(ListCategoryActivity.this, EditProductActivity.class);
+                intent.putExtra("category_id", selectedCategory.getCategoryId());
+                intent.putExtra("category_name", selectedCategory.getCategoryName());
+
+                String categoryImageString = selectedCategory.getImageUri().toString();
+                intent.putExtra("category_image", categoryImageString);
+                startActivity(intent);
+            }
+        });
+        categoryAdapter.setOnCategoryLongClickListener(new CategoryAdapter.OnCategoryLongClickListener() {
             @Override
             public void onCategoryLongClick(Category category) {
                 showDeleteConfirmationDialog(category);
             }
         });
-
 
     }
 
@@ -56,13 +75,11 @@ public class ListCategoryActivity extends AppCompatActivity {
                 boolean isDeleted = categoryHandler.deleteCategory(category.getCategoryId());
                 if (isDeleted) {
                     List<Category> updatedCategories = categoryHandler.getAllCategories();
-                    adapter.updateCategories(updatedCategories);
+                    categoryAdapter.updateCategories(updatedCategories);
                 }
             }
         });
         builder.setNegativeButton("Huỷ", null);
         builder.show();
     }
-
-
 }

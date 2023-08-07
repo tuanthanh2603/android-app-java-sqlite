@@ -46,9 +46,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         CategoryHandler categoryHandler = new CategoryHandler(this.getContext());
         String categoryName = categoryHandler.getCategoryNameByCategoryId(categoryId);
 
-
-
-
 //        imgProduct.setImageURI(product.getProduct_image());
 
         tvProductName.setText(product.getProduct_name());
@@ -58,10 +55,12 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 //        Picasso.get().load(product.getProduct_image()).into(imgProduct);
 //        String imageUri = "content://com.android.providers.downloads.documents/document/msf%3A49";
 //        Glide.with(this.getContext()).load(Uri.parse(imageUri)).into(imgProduct);
-
-
         return convertView;
 
 
+    }
+    public void setProducts(List<Product> productList) {
+        this.products = productList;
+        notifyDataSetChanged();
     }
 }

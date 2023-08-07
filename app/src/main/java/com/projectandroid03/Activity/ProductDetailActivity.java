@@ -68,20 +68,28 @@ public class ProductDetailActivity extends AppCompatActivity {
         addControl();
         Intent intent = getIntent();
         if(intent != null){
-            userId = getIntent().getStringExtra("selectedUserId");
-            selectedProductId = getIntent().getIntExtra("selectedProductId", -1);
-            TextView textViewProductId = findViewById(R.id.idproduct);
-            textViewProductId.setText("Product ID:  " + selectedProductId);
-            TextView textViewUserId = findViewById(R.id.iduser);
-            textViewUserId.setText("User ID:  " + userId);
+            Bundle extras = intent.getExtras();
+            if(extras != null){
+                userId = extras.getString("selectedUserId");
+                selectedProductId = extras.getInt("selectedProductId", -1);
+                String selectedProductName = extras.getString("selectedProductName");
+                TextView textViewProductId = findViewById(R.id.idproduct);
+                textViewProductId.setText("Product ID:  " + selectedProductId);
+                TextView textViewUserId = findViewById(R.id.iduser);
+                textViewUserId.setText("User ID:  " + userId);
 
-            ProductHandler productHandler = new ProductHandler(this);
-            Product selectedProduct = productHandler.getProductById(selectedProductId);
-            if(selectedProduct != null){
-                nameProduct.setText(selectedProduct.getProduct_name());
-                priceProduct.setText(selectedProduct.getProduct_price() + " đ");
-                descProduct.setText(selectedProduct.getProduct_desc());
+                ProductHandler productHandler = new ProductHandler(this);
+                Product selectedProduct = productHandler.getProductById(selectedProductId);
+                if(selectedProduct != null){
+                    nameProduct.setText(selectedProduct.getProduct_name());
+                    priceProduct.setText(selectedProduct.getProduct_price() + " đ");
+                    descProduct.setText(selectedProduct.getProduct_desc());
+                }
+
             }
+
+
+
         }
 
 
